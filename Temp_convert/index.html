@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Temperature Converter </h1>
+
+        <label>Celsius:</label>
+        <input type="text" id="celIp">
+
+        <label>Fahrenheit:</label>
+        <input type="text" id="farIp">
+
+        <label>Kelvin:</label>
+        <input type="text" id="kelIp">
+
+        <div class="input"> <button onclick="convertTemperatures()">Convert</button>
+            <button onclick="clear()">Clear</button>
+        </div>
+    </div>
+
+    <script>
+        function convertTemperatures() {
+            let celsius = parseFloat(document.getElementById("celIp").value);
+            let fahrenheit = parseFloat(document.getElementById("farIp").value);
+            let kelvin = parseFloat(document.getElementById("kelIp").value);
+
+            if (!isNaN(celsius)) {
+                fahrenheit = celsius * 9 / 5 + 32;
+                kelvin = celsius + 273.15;
+            }
+
+            if (!isNaN(fahrenheit)) {
+                celsius = (fahrenheit - 32) * 5 / 9;
+                kelvin = (fahrenheit + 459.67) * 5 / 9;
+            }
+
+            if (!isNaN(kelvin)) {
+                celsius = kelvin - 273.15;
+                fahrenheit = kelvin * 9 / 5 - 459.67;
+            }
+
+            document.getElementById("celIp").value = isNaN(celsius) ? "" : celsius.toFixed(2);
+            document.getElementById("farIp").value = isNaN(fahrenheit) ? "" : fahrenheit.toFixed(2);
+            document.getElementById("kelIp").value = isNaN(kelvin) ? "" : kelvin.toFixed(2);
+        }
+
+        function clear() {
+            document.getElementById("celIp").value = "";
+            document.getElementById("farIp").value = "";
+            document.getElementById("kelIp").value = "";
+        }
+    </script>
+</body>
+
+</html>
